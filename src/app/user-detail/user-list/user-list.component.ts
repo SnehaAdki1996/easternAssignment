@@ -1,5 +1,7 @@
+import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 import { UserData } from 'src/app/MockData/data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -9,10 +11,11 @@ import { UserData } from 'src/app/MockData/data';
 export class UserListComponent implements OnInit {
   search : string = ''
   userDetails 
-  constructor() { }
+  constructor(private router : Router,
+              private userService : UserService) { }
 
   ngOnInit(): void {
-    this.userDetails = UserData.data
+    this.userDetails = this.userService.userDetails
     console.log(this.userDetails)
     this.validatePhoneNumber()
   }
@@ -22,6 +25,7 @@ export class UserListComponent implements OnInit {
       this.userDetails[this.userDetails.indexOf(ele)].phone = +ele.phone ? parseInt(ele.phone) : "NA" 
     })
   }
+
   searchPayList(searchValue) {
     let filterData = [];
     this.search = searchValue.trim().toLowerCase();
@@ -51,4 +55,12 @@ export class UserListComponent implements OnInit {
     }
   }
 
+  navigateToAddUser(){
+    this.router.navigate(['userData/add'])
+  }
+
+  navigateToEdit(event){
+    console.log(event)
+    this.router.navigate([`userData/${event.id}/edit`])
+  }
 }

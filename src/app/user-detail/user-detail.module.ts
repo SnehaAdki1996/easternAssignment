@@ -11,6 +11,7 @@ import { UserCreateComponent } from './user-create/user-create.component';
 
 //Prime Ng Modules
 import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 
 
@@ -21,10 +22,12 @@ import {TableModule} from 'primeng/table';
     UserDetailRoutingModule,
     InputTextModule,
     FormsModule,
-    TableModule
+    TableModule,
+    ButtonModule
   ],
   exports : [
-    UserListComponent
+    UserListComponent,
+    UserCreateComponent
   ]
 })
 export class UserDetailModule { }

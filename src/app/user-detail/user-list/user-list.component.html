@@ -1,3 +1,11 @@
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+<button class="btn btn-primary m-10" (click)="navigateToAddUser()" type="submit">
+    Add New
+</button>
+
 
 <div class="row">
     <div class="col-3">
@@ -26,17 +34,19 @@
                     <th>Address Line 1</th>
                     <th>Address Line 2</th>
                     <th>code</th>
+                    <th>Edit</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-userdata>
                 <tr>
-                    <td>{{userdata.id}}</td>
-                    <td>{{userdata.name}}</td>
-                    <td>{{userdata.phone}}</td>
-                    <td>{{userdata.address.city}}</td>
-                    <td>{{userdata.address.address_line1}}</td>
-                    <td>{{userdata.address.address_line2}}</td>
-                    <td>{{userdata.address.postal_code}}</td>
+                    <td>{{userdata?.id}}</td>
+                    <td>{{userdata?.name}}</td>
+                    <td>{{userdata?.phone}}</td>
+                    <td>{{userdata?.address.city}}</td>
+                    <td>{{userdata?.address.address_line1}}</td>
+                    <td>{{userdata?.address.address_line2}}</td>
+                    <td>{{userdata?.address.postal_code}}</td>
+                    <td (click)="navigateToEdit(userdata)"><i class="fa fa-edit"></i></td>
                 </tr>
             </ng-template>
         </p-table>

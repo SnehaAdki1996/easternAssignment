@@ -1,1 +1,79 @@
-<p>user-create works!</p>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+<form (ngSubmit)="onSubmit()" #f='ngForm'>
+    <div class="row m-10 pl-10">
+        <div class="col-3 ">
+            <label>Name <span class="required">*</span></label>
+        </div>
+        <div class="col-3">
+            <input type="text" required id="name" [(ngModel)]="defaultName" name="name" class="form-control" #name="ngModel" minlength="4">
+            <span *ngIf="!name.valid&&name.touched"class="required">Name required</span>
+            <span *ngIf="!name.valid&&name.touched&&name.errors?.minlength" class="required">Name must be at least 4 characters long.</span>
+        </div>
+    </div>
+    <div class="row m-10 pl-10">
+        <div class="col-3">
+            <label>Phone Number<span class="required">*</span></label>
+        </div>
+        <div class="col-3">
+            <input type="text" required id="phoneNumber" [(ngModel)]="defaultNumber" name="phone" class="form-control" #phone="ngModel">
+        </div>
+        <span *ngIf="!phone.valid && phone.touched"class="required">Phone Number  required</span>
+    </div>
+
+
+    <div ngModelGroup="address">
+        <div class="row m-10 pl-10">
+            <div class="col-3">
+                <label>Address Line 1</label>
+            </div>
+            <div class="col-3">
+                <input type="text" id="address_line1" [(ngModel)]="defaultaddress_line1" name="address_line1">
+            </div>
+        </div>
+        <div class="row m-10 pl-10">
+            <div class="col-3">
+                <label>Address Line 2</label>
+            </div>
+            <div class="col-3">
+                <input type="text" id="address_line2" [(ngModel)]="defaultaddress_line2" name="address_line2">
+            </div>
+        </div>
+        <div class="row m-10 pl-10">
+            <div class="col-3">
+                <label>City</label>
+            </div>
+            <div class="col-3">
+                <input type="text" id="city" [(ngModel)]="defaultCity" name="city">
+            </div>
+        </div>
+        <div class="row m-10 pl-10">
+            <div class="col-3">
+                <label>Postal Code</label>
+            </div>
+            <div class="col-3">
+                <input type="text" id="postal_code" [(ngModel)]="defaultpostal_code" name="postal_code">
+            </div>
+        </div>
+    </div>
+    <div class="row m-10 pl-10">
+        <div *ngIf="!editForm" class="col-3">
+            <button class="btn btn-primary" type="submit" >
+                Submit
+            </button>
+        </div>
+        <div *ngIf="editForm == true" class="col-3">
+                <button class="btn btn-primary" type="submit" (click)="onUpdate()">
+                    Update
+                </button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-primary" type="submit" (click)="navigateBackToHome()">
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>
