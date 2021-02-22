@@ -14,6 +14,13 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     this.userDetails = UserData.data
     console.log(this.userDetails)
+    this.validatePhoneNumber()
+  }
+
+  validatePhoneNumber(){
+    this.userDetails.map(ele => {
+      this.userDetails[this.userDetails.indexOf(ele)].phone = +ele.phone ? parseInt(ele.phone) : "NA" 
+    })
   }
   searchPayList(searchValue) {
     let filterData = [];
@@ -24,21 +31,21 @@ export class UserListComponent implements OnInit {
       this.userDetails = UserData.data
     } else {
       filterData = this.userDetails.filter(elem => {
-        let id="";
-        id= elem.id ? elem.id.toString().includes(this.search) : ""
+        // let id="";
+        // id= elem.id ? elem.id.toString().includes(this.search) : ""
         let name = "";
         name = elem.name ? elem.name.toLowerCase().includes(this.search) : ""
-        let phone = "";
-        phone = elem.phone ? elem.phone.toString().includes(this.search) : ""
-        let status = ''
-        status = elem.payment_status ? elem.payment_status.toLowerCase().includes(this.search) : ''
-        let address_line1 = ''
-        address_line1 = elem.address.address_line1 ? elem.address.address_line1.toLowerCase().includes(this.search) : ''
-        let address_line2 = ''
-        address_line2= elem.address.address_line2 ? elem.address.address_line2.toLowerCase().includes(this.search) : ''
+        // let phone = "";
+        // phone = elem.phone ? elem.phone.toString().includes(this.search) : ""
+        // let status = ''
+        // status = elem.payment_status ? elem.payment_status.toLowerCase().includes(this.search) : ''
+        // let address_line1 = ''
+        // address_line1 = elem.address.address_line1 ? elem.address.address_line1.toLowerCase().includes(this.search) : ''
+        // let address_line2 = ''
+        // address_line2= elem.address.address_line2 ? elem.address.address_line2.toLowerCase().includes(this.search) : ''
         let city = ''
         city = elem.address.city ? elem.address.city.toLowerCase().includes(this.search) : ''
-        return (id || phone || name || status || address_line2 || city || address_line1);
+        return (name || city );
       });
       this.userDetails = filterData;
     }
